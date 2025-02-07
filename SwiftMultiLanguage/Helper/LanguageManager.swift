@@ -14,15 +14,15 @@ class LanguageManager {
     private init() {}
 
     func setLanguage(_ languageCode: String) {
-        UserDefaults.standard.set([languageCode], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-        
+        // Set the AppleLanguages value in UserDefaults to switch the language
+        UserDefaults.standard.setValue(languageCode, forKey: "AppleLanguages")
+//        UserDefaults.standard.synchronize()
+
         // Post a notification to inform the app about the language change
-        NotificationCenter.default.post(name: NSNotification.Name("LanguageChanged"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name("LanguageChanged"), object: nil)
     }
-    
+
     func currentLanguage() -> String {
         return (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first ?? "en"
     }
 }
-
